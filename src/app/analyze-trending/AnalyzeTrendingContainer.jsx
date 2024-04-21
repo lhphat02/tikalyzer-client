@@ -18,7 +18,7 @@ const AnalyzeTrendingrContainer = () => {
         </p>
       </header>
 
-      <Loading statusMessage="Getting data" />
+      <Loading statusMessage="Getting data..." />
     </container>
   );
 };

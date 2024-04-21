@@ -1,7 +1,6 @@
 'use client';
+
 import Button from '@/components/common/Button';
-import Input from '@/components/common/Input';
-import Loading from '@/components/common/Loading';
 import Link from 'next/link';
 
 export default function Home() {

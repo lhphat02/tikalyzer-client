@@ -4,6 +4,7 @@ import React from 'react';
 import Button from '@/components/common/Button';
 import Input from '@/components/common/Input';
 import Loading from '@/components/common/Loading';
+import Chart from '@/components/common/Chart';
 
 const AnalyzeUserContainer = () => {
   return (
@@ -28,6 +29,7 @@ const AnalyzeUserContainer = () => {
       </section>
 
       {/* <Loading statusMessage="Crawling data" /> */}
+      {/* <Chart /> */}
     </container>
   );
 };

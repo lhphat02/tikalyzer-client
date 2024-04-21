@@ -19,7 +19,7 @@ const Navbar = () => {
   console.log(path);
 
   return (
-    <nav className="fixed z-50 flex items-center justify-between w-full p-4 shadow-sm">
+    <nav className="fixed z-10 flex items-center justify-between w-full p-4 bg-white shadow-sm bg-opacity-80 backdrop-blur-md">
       <div className="flex items-center">
         <Image
           src={assets.logo_svg}
