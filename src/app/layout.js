@@ -1,3 +1,4 @@
+import { AppWrapper } from '@/context';
 import './globals.css';
 import Navbar from '@/components/shared/NavBar';
 
@@ -10,8 +11,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Navbar />
-        {children}
+        <AppWrapper>
+          <Navbar />
+          {children}
+        </AppWrapper>
       </body>
     </html>
   );

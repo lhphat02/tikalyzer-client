@@ -1,47 +1,48 @@
 'use client';
 import React, { useState } from 'react';
-
 import Button from '@/components/common/Button';
 import Input from '@/components/common/Input';
-import UserChart from '@/components/analytics/UserChart';
+import PredictViewResult from '@/components/analytics/PredictViewResult';
 
-const AnalyzeUserContainer = () => {
-  const [username, setUsername] = useState('');
-  const [submittedUsername, setSubmittedUsername] = useState('');
+const PredictVideoViewContainer = () => {
+  const [videoUrl, setVideoUrl] = useState('');
+  const [submittedVideoUrl, setSubmittedVideoUrl] = useState('');
 
   const handleInputChange = (value) => {
-    setUsername(value);
+    setVideoUrl(value);
   };
 
   const handleSubmit = () => {
-    setSubmittedUsername(username);
+    setSubmittedVideoUrl(videoUrl);
   };
 
   return (
-    <div className="page-container">
+    <container className="page-container">
       <header className="flex flex-col items-center justify-center w-full gap-2 p-4">
         <h1 className="text-3xl font-bold text-center text-prim-1">
-          Analyze your TikTok account
+          Predict your video view count in next 90 days
         </h1>
+
         <p className="text-center text-prim-2">
-          Enter your username to get insights on your videos
+          Enter the video url to predict the view count
         </p>
       </header>
       <section className="flex items-center justify-center gap-2 p-2">
         <Input
-          placeholder="Enter username"
+          placeholder="Enter video url"
           type="text"
           handleInputChange={handleInputChange}
         />
         <Button handleClick={handleSubmit}>Confirm</Button>
       </section>
-      {submittedUsername && (
+
+      {submittedVideoUrl && (
         <section className="flex w-full items-center justify-center p-10">
-          <UserChart username={submittedUsername} />
+          <PredictViewResult videoUrl={submittedVideoUrl} />
         </section>
       )}
-    </div>
+    </container>
   );
 };
 
-export default AnalyzeUserContainer;
+export default PredictVideoViewContainer;

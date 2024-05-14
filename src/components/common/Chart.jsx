@@ -11,7 +11,7 @@ const Chart = () => {
     const fetchChartData = async () => {
       try {
         const response = await axios.get(
-          'http://127.0.0.1:5000/userVideosAnalytics?user_name=lazadavietnam'
+          'http://127.0.0.1:5000/userVideosAnalytics?user_name=sofm_official'
         );
         setImageData(response.data.data.displotUrl);
       } catch (error) {

@@ -1,11 +1,23 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 
 import Button from '@/components/common/Button';
 import Input from '@/components/common/Input';
 import Loading from '@/components/common/Loading';
+import HashtagChart from '@/components/analytics/HashtagChart';
 
 const AnalyzeHashtagContainer = () => {
+  const [hashtag, setHashtag] = useState('');
+  const [submittedHashtag, setSubmittedHashtag] = useState('');
+
+  const handleInputChange = (value) => {
+    setHashtag(value);
+  };
+
+  const handleSubmit = () => {
+    setSubmittedHashtag(hashtag);
+  };
+
   return (
     <container className="page-container">
       <header className="flex flex-col items-center justify-center w-full gap-2 p-4">
@@ -22,12 +34,16 @@ const AnalyzeHashtagContainer = () => {
         <Input
           placeholder="Enter hashtag"
           type="text"
-          handleInputChange={(value) => console.log(value)}
+          handleInputChange={handleInputChange}
         />
-        <Button>Confirm</Button>
+        <Button handleClick={handleSubmit}>Confirm</Button>
       </section>
 
-      {/* <Loading statusMessage="Crawling data" /> */}
+      {submittedHashtag && (
+        <section className="flex w-full items-center justify-center p-10">
+          <HashtagChart hashtag={submittedHashtag} />
+        </section>
+      )}
     </container>
   );
 };

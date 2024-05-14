@@ -47,6 +47,12 @@ const Navbar = () => {
         </li>
 
         <li>
+          <TextButton href="/predict-view" isActive={path === '/predict-view'}>
+            Predict
+          </TextButton>
+        </li>
+
+        <li>
           <TextButton href="/contact" isActive={path === '/contact'}>
             Contact
           </TextButton>

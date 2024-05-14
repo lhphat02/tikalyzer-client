@@ -1,9 +1,7 @@
 'use client';
 import React from 'react';
-
-import Button from '@/components/common/Button';
-import Input from '@/components/common/Input';
 import Loading from '@/components/common/Loading';
+import TrendingChart from '@/components/analytics/TrendingChart';
 
 const AnalyzeTrendingrContainer = () => {
   return (
@@ -18,7 +16,7 @@ const AnalyzeTrendingrContainer = () => {
         </p>
       </header>
 
-      <Loading statusMessage="Getting data..." />
+      <TrendingChart />
     </container>
   );
 };
