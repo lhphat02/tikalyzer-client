@@ -50,19 +50,19 @@ const UserChart = ({ username }) => {
   console.log(data);
 
   return (
-    <div className="flex w-full flex-col">
-      <p className=" text-2xl text-prim-1 font-semibold text-center">
+    <div className="flex flex-col w-full">
+      <p className="text-2xl font-semibold text-center  text-prim-1">
         Total videos: {analyticsData.rowCount}
       </p>
 
-      <div className="w-full flex text-xl font-semibold justify-between p-16">
+      <div className="flex justify-between w-full p-16 text-xl font-semibold">
         <p>Mean: {analyticsData.mean}</p>
         <p>Median: {analyticsData.median}</p>
         <p>Mode: {analyticsData.mode}</p>
       </div>
 
       {chartData.map((chart, index) => (
-        <div className="p-8 flex flex-col items-center justify-center border h-full">
+        <div className="flex flex-col items-center justify-center w-full h-full">
           <p className="text-2xl font-semibold text-prim-1">{chart.title}</p>
           <div key={index} className="relative w-full h-screen">
             <Image src={chart.url} alt={chart.title} fill objectFit="contain" />

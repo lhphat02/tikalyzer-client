@@ -1,12 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const useHashtagVisualization = ({ hashtag }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const isMounted = useRef(false);
 
   useEffect(() => {
-    if (!hashtag) return;
+    if (!hashtag || isMounted.current) return;
 
     const fetchData = async () => {
       try {
@@ -23,6 +24,7 @@ const useHashtagVisualization = ({ hashtag }) => {
     };
 
     fetchData();
+    isMounted.current = true;
   }, [hashtag]);
 
   return { data, loading, error };

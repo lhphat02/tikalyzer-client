@@ -28,8 +28,7 @@ const Button = ({
         sans.className,
         'py-2 px-4 rounded-md font-medium shadow-sm flex items-center justify-center transition-colors gap-2',
         variant === 'primary' && 'bg-prim-1 text-white hover:bg-prim-2',
-        variant === 'secondary' &&
-          'bg-gray-200 text-gray-700 hover:bg-gray-300',
+        variant === 'secondary' && 'bg-white text-gray-700 hover:bg-gray-100',
         disabled && 'opacity-50 cursor-not-allowed bg-gray-200',
       ].join(' ')}
       disabled={disabled}

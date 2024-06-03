@@ -1,12 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const useUserVisualization = ({ username }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const isMounted = useRef(false);
 
   useEffect(() => {
-    if (!username) return;
+    if (!username || isMounted.current) return;
 
     const fetchData = async () => {
       try {
@@ -23,6 +24,7 @@ const useUserVisualization = ({ username }) => {
     };
 
     fetchData();
+    isMounted.current = true;
   }, [username]);
 
   return { data, loading, error };
