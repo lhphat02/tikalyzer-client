@@ -16,8 +16,20 @@ const Carousel = ({ children }) => {
     setCurrentIndex(newIndex);
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'ArrowLeft') {
+      handlePrevClick();
+    } else if (event.key === 'ArrowRight') {
+      handleNextClick();
+    }
+  };
+
   return (
-    <div className="relative w-full h-full mx-auto border">
+    <div
+      className="relative w-full h-full mx-auto border focus:outline-prim-1"
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+    >
       <div className="relative h-full overflow-hidden">
         {React.Children.map(children, (child, index) => (
           <div

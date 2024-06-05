@@ -1,4 +1,5 @@
 'use client';
+import { useState, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
 
@@ -15,11 +16,23 @@ const analyzeOptions = [
 const Navbar = () => {
   const path = usePathname();
   const router = useRouter();
+  const [atTop, setAtTop] = useState(true);
 
-  console.log(path);
+  useEffect(() => {
+    const handleScroll = () => {
+      setAtTop(window.scrollY === 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <nav className="fixed z-10 flex items-center justify-between w-full p-4 bg-white shadow-sm bg-opacity-80 backdrop-blur-md">
+    <nav
+      className={`fixed z-50 flex items-center justify-between w-full p-4 bg-white shadow-sm backdrop-blur-md transition-all duration-1000 ${
+        atTop ? 'bg-opacity-100' : 'bg-opacity-80'
+      }`}
+    >
       <div className="flex items-center">
         <Image
           src={assets.logo_svg}

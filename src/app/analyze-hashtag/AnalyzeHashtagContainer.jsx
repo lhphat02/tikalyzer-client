@@ -19,30 +19,32 @@ const AnalyzeHashtagContainer = () => {
   };
 
   return (
-    <container className="page-container">
-      <header className="flex flex-col items-center justify-center w-full gap-2 p-4">
-        <h1 className="text-3xl font-bold text-center text-prim-1">
-          Analyze #hashtags on TikTok
-        </h1>
-
-        <p className="text-center text-prim-2">
-          Enter hashtag to get insights on the videos
-        </p>
-      </header>
-
-      <section className="flex items-center justify-center gap-2 p-2">
-        <Input
-          placeholder="Enter hashtag"
-          type="text"
-          handleInputChange={handleInputChange}
-        />
-        <Button handleClick={handleSubmit}>Confirm</Button>
-      </section>
-
-      {submittedHashtag && (
-        <section className="flex w-full items-center justify-center p-10">
+    <container className="justify-center page-container">
+      {submittedHashtag ? (
+        <section className="flex items-center justify-center w-full p-10">
           <HashtagChart hashtag={submittedHashtag} />
         </section>
+      ) : (
+        <>
+          <header className="flex flex-col items-center justify-center w-full gap-2 p-4">
+            <h1 className="text-3xl font-bold text-center text-prim-1">
+              Analyze #hashtags on TikTok
+            </h1>
+
+            <p className="text-center text-prim-2">
+              Enter hashtag to get insights on the videos
+            </p>
+          </header>
+          <section className="flex items-center justify-center gap-2 p-2">
+            <Input
+              placeholder="Enter hashtag"
+              type="text"
+              name="hashtag"
+              handleInputChange={handleInputChange}
+            />
+            <Button handleClick={handleSubmit}>Confirm</Button>
+          </section>
+        </>
       )}
     </container>
   );

@@ -39,7 +39,7 @@ const TxtBtnDropdown = ({
         className={[
           sans.className,
           'transition-colors hover:text-prim-1 min-w-4',
-          isActive ? 'text-prim-1' : 'text-slate-300',
+          isActive ? 'text-prim-1 font-semibold' : 'text-gray-400',
           isOpen ? 'underline underline-offset-2' : '',
         ].join(' ')}
         onClick={toggleDropdown}

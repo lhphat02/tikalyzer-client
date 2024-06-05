@@ -14,7 +14,7 @@ const TextButton = ({ children, href, disabled, isActive = false }) => {
       className={[
         sans.className,
         'transition-colors hover:text-prim-1',
-        isActive ? 'text-prim-1' : 'text-slate-300',
+        isActive ? 'text-prim-1 font-semibold' : 'text-gray-400',
       ].join(' ')}
       disabled={disabled}
       href={href}

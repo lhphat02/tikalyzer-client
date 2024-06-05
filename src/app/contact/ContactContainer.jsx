@@ -2,15 +2,15 @@ import React from 'react';
 
 const ContactContainer = () => {
   return (
-    <div className="page-container justify-center">
-      <div className="w-full flex flex-col gap-4">
-        <p className="text-center text-5xl font-bold text-prim-2">
+    <div className="justify-center page-container">
+      <div className="flex flex-col w-full gap-4">
+        <p className="text-5xl font-bold text-center text-prim-2">
           Need funding
         </p>
-        <p className="text-center text-3xl font-semibold ">
+        <p className="text-3xl font-semibold text-center ">
           Thanks for your support!
         </p>
-        <p className="text-center text-3xl mt-20 font-semibold border-2 border-prim-1 p-6">
+        <p className="p-6 mt-20 text-3xl font-semibold text-center border-2 border-prim-1">
           Techcombank - 1903 7477 9810 13 - Luu Huynh Phat
         </p>
       </div>

@@ -17,7 +17,7 @@ const PredictVideoViewContainer = () => {
   };
 
   return (
-    <container className="page-container">
+    <container className="justify-center page-container">
       <header className="flex flex-col items-center justify-center w-full gap-2 p-4">
         <h1 className="text-3xl font-bold text-center text-prim-1">
           Predict your video view count in next 90 days
@@ -33,11 +33,11 @@ const PredictVideoViewContainer = () => {
           type="text"
           handleInputChange={handleInputChange}
         />
-        <Button handleClick={handleSubmit}>Confirm</Button>
+        <Button onClick={handleSubmit}>Confirm</Button>
       </section>
 
       {submittedVideoUrl && (
-        <section className="flex w-full items-center justify-center p-10">
+        <section className="flex items-center justify-center w-full p-10">
           <PredictViewResult videoUrl={submittedVideoUrl} />
         </section>
       )}

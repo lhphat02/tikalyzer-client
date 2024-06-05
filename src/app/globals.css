@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+::-webkit-scrollbar {
+  @apply w-2;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-prim-1 rounded hover:bg-prim-2;
+}
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -20,5 +36,17 @@
 
   .page-container {
     @apply flex flex-col items-center min-h-screen p-6 space-y-6 sm:p-12 md:p-24;
+  }
+
+  .container-slide {
+    @apply flex flex-col items-start min-h-screen m-auto w-full;
+  }
+
+  .btn {
+    @apply flex items-center justify-center gap-2 border border-prim-1 bg-prim-1 hover:bg-prim-2 text-white py-2 md:px-6 px-4 rounded-lg;
+  }
+
+  .btn-outline {
+    @apply flex border-spacing-y-8 border items-center justify-center gap-2 border-prim-1 text-prim-1 py-2 md:px-6 px-4 rounded-lg;
   }
 }

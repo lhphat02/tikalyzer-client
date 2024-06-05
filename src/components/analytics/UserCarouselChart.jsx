@@ -1,23 +1,36 @@
 import useUserVisualization from '@/hooks/useUserVisualization';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Loading from '../common/Loading';
 import Image from 'next/image';
 import Carousel from '../common/Carousel';
 import {
   DocumentArrowDownIcon,
-  EyeIcon,
   LightBulbIcon,
-  TableCellsIcon,
+  XMarkIcon,
 } from '@heroicons/react/24/solid';
 import Button from '../common/Button';
-import { textLimiter } from '@/utils/format';
+import { formatLargeNumber } from '@/utils/format';
 
-const UserCarouselChart = ({ username = 'mazuong2ka' }) => {
+const loadingTexts = [
+  'Getting user information...',
+  'Collecting videos...',
+  'Loading video analytics...',
+  'Analyzing user data...',
+  'Generating insights...',
+];
+
+const UserCarouselChart = ({ username, handleClose }) => {
   const { data, loading, error } = useUserVisualization({ username });
-  const [csvData, setCsvData] = useState(null);
+  const [showChart, setShowChart] = useState(false);
+
+  useEffect(() => {
+    if (data) {
+      setShowChart(true);
+    }
+  }, [data]);
 
   if (loading) {
-    return <Loading statusMessage="Loading video analytics..." />;
+    return <Loading statusMessage={loadingTexts} interval={5000} />;
   }
 
   if (error) {
@@ -28,12 +41,32 @@ const UserCarouselChart = ({ username = 'mazuong2ka' }) => {
 
   const chartData = [
     {
-      title: 'Distribution of View over videos',
-      url: analyticsData.displotUrl,
+      title: 'Distribution of Views over videos',
+      url: analyticsData.viewDistributionChartUrl,
     },
     {
-      title: 'Top video screen size with most views',
+      title: 'Distribution of Likes over videos',
+      url: analyticsData.likeDistributionChartUrl,
+    },
+    {
+      title: 'Distribution of Comments over videos',
+      url: analyticsData.commentDistributionChartUrl,
+    },
+    {
+      title: 'Distribution of Shares over videos',
+      url: analyticsData.shareDistributionChartUrl,
+    },
+    {
+      title: 'Distribution of Saves over videos',
+      url: analyticsData.saveDistributionChartUrl,
+    },
+    {
+      title: 'Top video frame size with most views',
       url: analyticsData.topSizePieChartUrl,
+    },
+    {
+      title: 'Top video video duration with most views',
+      url: analyticsData.topDurationChartUrl,
     },
     {
       title: 'Top 3 days of week with most views',
@@ -73,11 +106,13 @@ const UserCarouselChart = ({ username = 'mazuong2ka' }) => {
     }
   };
 
-  console.log(data);
-
   return (
     <div className="w-full h-screen">
-      <div className="flex flex-row w-full h-5/6">
+      <div
+        className={`flex flex-row w-full h-5/6 transition-opacity duration-1000 ${
+          showChart ? 'opacity-100' : 'opacity-0'
+        }`}
+      >
         <Carousel>
           {chartData.map((chart, index) => (
             <div
@@ -98,7 +133,14 @@ const UserCarouselChart = ({ username = 'mazuong2ka' }) => {
             </div>
           ))}
         </Carousel>
-        <div className="flex flex-col items-center justify-start w-1/3 p-4 border bg-prim-1 rounded-r-xl">
+
+        <div className="relative flex flex-col items-center justify-start w-1/3 p-4 border bg-prim-1 rounded-r-xl">
+          <div
+            className="absolute p-2 rounded-full top-4 right-4 hover:bg-gray-100 hover:bg-opacity-30 hover:cursor-pointer"
+            onClick={handleClose}
+          >
+            <XMarkIcon className="w-6 h-6 text-white" />
+          </div>
           <div className="flex flex-col items-center w-full gap-2 pb-4">
             <div className="relative w-24 h-24">
               <Image
@@ -121,59 +163,76 @@ const UserCarouselChart = ({ username = 'mazuong2ka' }) => {
             >
               {analyticsData.username || 'User'}
             </a>
-            <p className="text-center text-white text-md">
-              {textLimiter(
-                analyticsData?.userMetaData?.desc || "User's description",
-                100
-              )}
-            </p>
-            <p className="w-full text-lg font-semibold text-center text-white ">
+            <div className="flex gap-2 font-semibold">
+              <span className="text-center text-white text-md">
+                {formatLargeNumber(
+                  analyticsData?.userInfo?.stats?.followerCount
+                ) || 0}{' '}
+                Followers
+              </span>
+              <span className="text-center text-white text-md">
+                {formatLargeNumber(
+                  analyticsData?.userInfo?.stats?.followingCount
+                ) || 0}{' '}
+                Following
+              </span>
+              <span className="text-center text-white text-md">
+                {formatLargeNumber(
+                  analyticsData?.userInfo?.stats?.heartCount
+                ) || 0}{' '}
+                Likes
+              </span>
+            </div>
+
+            <p className="w-full text-lg font-semibold text-center text-white">
               Total videos: {analyticsData.rowCount}
             </p>
           </div>
 
-          <div className="flex flex-col items-start justify-start w-full gap-8 p-4 border-t">
-            <div className="flex flex-col gap-2 text-white ">
+          <div className="flex flex-col items-start justify-between w-full h-full gap-8 py-4 border-t">
+            <div className="flex flex-col gap-2 text-white">
               <span>
-                <p className="text-lg font-semibold text-white ">
+                <p className="text-lg font-semibold text-white">
                   Mean of View:
                 </p>{' '}
                 {analyticsData.mean}
               </span>
               <span>
-                <p className="text-lg font-semibold text-white ">
+                <p className="text-lg font-semibold text-white">
                   Median of View:
                 </p>{' '}
                 {analyticsData.median}
               </span>
               <span>
-                <p className="text-lg font-semibold text-white ">
+                <p className="text-lg font-semibold text-white">
                   Mode of View:
                 </p>{' '}
                 {analyticsData.mode}
               </span>
+              <span>
+                <p className="text-lg font-semibold text-white">
+                  Standard deviation of View:
+                </p>{' '}
+                {analyticsData.standardDeviation}
+              </span>
             </div>
-          </div>
 
-          <div className="flex flex-col w-full gap-2">
-            <Button handleClick={handleDownloadCSV} variant="secondary">
-              <DocumentArrowDownIcon class="h-6 w-6 text-prim-1" />
-              <p className="text-prim-1">Download dataset</p>
-            </Button>
-            <Button
-              variant="secondary"
-              handleClick={() => alert('Not implemented')}
-            >
-              <LightBulbIcon class="h-6 w-6 text-prim-1" />
-              <p className="text-prim-1">Generate insights</p>
-            </Button>
-            <Button
-              variant="secondary"
-              handleClick={() => alert('Not implemented')}
-            >
-              <EyeIcon class="h-6 w-6 text-prim-1" />
-              <p className="text-prim-1">Predict View Count</p>
-            </Button>
+            <div className="flex flex-col w-full gap-2">
+              <Button
+                handleClick={handleDownloadCSV}
+                className="bg-white hover:bg-slate-200 text-prim-1"
+              >
+                <DocumentArrowDownIcon className="w-6 h-6 text-prim-1" />
+                <p className="text-prim-1">Download dataset</p>
+              </Button>
+              <Button
+                className="bg-white hover:bg-slate-300 text-prim-1"
+                handleClick={() => alert('Not implemented')}
+              >
+                <LightBulbIcon className="w-6 h-6 text-prim-1" />
+                <p className="text-prim-1">Generate insights</p>
+              </Button>
+            </div>
           </div>
         </div>
       </div>

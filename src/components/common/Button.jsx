@@ -14,25 +14,16 @@ import { sans } from '@/app/font';
  * - `primary`: A primary button
  * - `secondary`: A secondary button
  */
-const Button = ({
-  children,
-  type = 'button',
-  variant = 'primary',
-  disabled,
-  handleClick,
-}) => {
+const Button = ({ children, onClick, className, outline, disabled }) => {
   return (
     <button
-      type={type}
       className={[
+        className,
         sans.className,
-        'py-2 px-4 rounded-md font-medium shadow-sm flex items-center justify-center transition-colors gap-2',
-        variant === 'primary' && 'bg-prim-1 text-white hover:bg-prim-2',
-        variant === 'secondary' && 'bg-white text-gray-700 hover:bg-gray-100',
-        disabled && 'opacity-50 cursor-not-allowed bg-gray-200',
+        outline ? 'btn-outline' : 'btn',
       ].join(' ')}
+      onClick={onClick}
       disabled={disabled}
-      onClick={handleClick}
     >
       {children}
     </button>
