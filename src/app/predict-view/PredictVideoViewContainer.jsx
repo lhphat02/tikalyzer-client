@@ -31,6 +31,7 @@ const PredictVideoViewContainer = () => {
         <Input
           placeholder="Enter video url"
           type="text"
+          handleKeyDown={(e) => e.key === 'Enter' && handleSubmit()}
           handleInputChange={handleInputChange}
         />
         <Button onClick={handleSubmit}>Confirm</Button>
