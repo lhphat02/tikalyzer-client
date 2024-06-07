@@ -31,3 +31,4 @@ const Button = ({ children, onClick, className, outline, disabled }) => {
 };
 
 export default Button;
+// Path: src/components/common/Button.jsx
