@@ -26,8 +26,8 @@ const HeroSlide = ({ onSlideChange }) => {
                 Get insights on your TikTok account
               </h2>
               <h2 className="text-sm font-medium text-center text-white md:text-xl">
-                Analyze your all tiktok content and get predictions on your next
-                post
+                Analyze your account, get trending hashtags, predict your next
+                post and more
               </h2>
             </div>
 

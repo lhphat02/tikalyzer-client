@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '../common/Button';
 import { useRouter } from 'next/navigation';
+import CountUp from '../common/CountUp';
 
 const PredictSlide = () => {
   const router = useRouter();
@@ -19,12 +20,51 @@ const PredictSlide = () => {
         <div className="relative z-10 flex flex-col items-center justify-center w-full h-full gap-4 px-4 md:space-y-4">
           <div className="flex flex-col items-center justify-center gap-2">
             <h2 className="text-xl font-semibold text-center text-white md:text-4xl">
-              Join now and get predictions your next TikTok post
+              Join now and try our AI-powered features
             </h2>
             <p className="text-sm text-center text-white md:text-xl">
-              Use our Machine Learning model to predict your next TikTok video
-              and get insights on your account
+              Use Machine Learning to predict your next TikTok video and
+              generate AI insights on your account
             </p>
+          </div>
+
+          <div className="flex gap-16 w-full justify-center items-center">
+            <div className="flex flex-col items-center justify-center">
+              <CountUp
+                start={1}
+                end={100}
+                time={2000}
+                suffix="K"
+                className="font-bold text-white"
+              />
+              <p className="text-center text-xl font-semibold text-white">
+                Entries for model training
+              </p>
+            </div>
+            <div className="flex flex-col items-center justify-center">
+              <CountUp
+                start={1}
+                end={57}
+                time={2000}
+                suffix="%"
+                className="font-bold text-white"
+              />
+              <p className="text-center text-xl font-semibold text-white">
+                Prediction accuracy
+              </p>
+            </div>
+            <div className="flex flex-col items-center justify-center">
+              <CountUp
+                start={1}
+                end={10}
+                time={2000}
+                suffix="s"
+                className="font-bold text-white"
+              />
+              <p className="text-center text-xl font-semibold text-white">
+                To get your prediction
+              </p>
+            </div>
           </div>
 
           <Button
