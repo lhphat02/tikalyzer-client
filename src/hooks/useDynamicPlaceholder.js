@@ -1,5 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 
+/**
+ * Animation hook for dynamic placeholder display
+ *
+ * @param {*} textArray
+ * @param {*} interval
+ * @returns
+ */
 const useDynamicPlaceholder = (textArray, interval = 150) => {
   const [currentText, setCurrentText] = useState(textArray[0]);
   const currentIndexRef = useRef(0); // hold the index of current string
