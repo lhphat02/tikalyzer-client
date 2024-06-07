@@ -9,6 +9,7 @@ const CONSTANTS = {
     ANALYZE_USER: '/analyze-user',
     ANALYZE_HASHTAG: '/analyze-hashtag',
     ANALYZE_TRENDING: '/analyze-trending',
+    PREDICT_VIEW: '/predict-view',
     CONTACT: '/contact',
   },
   API_ENDPOINT: {
